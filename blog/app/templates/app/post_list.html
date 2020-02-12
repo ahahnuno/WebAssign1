@@ -1,14 +1,73 @@
 <html>
   <head>
     <title>Adam's Blog</title>
+    <!--animate-->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css"/>
+    <!--fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Caveat|Source+Code+Pro&display=swap" rel="stylesheet">
+    <style>
+      body
+      {
+        width: 80%;
+        margin-left: 10%;
+        background: url(https://pagecdn.io/lib/subtlepatterns/tic-tac-toe.png);
+        background-repeat: repeat;
+      }
+
+      .big
+      {
+        font-family: 'Caveat', cursive;
+        font-size: 4em;
+        text-align: center;
+        font-weight: bold;
+        text-shadow: 0.1em 0.1em #EBEBEB;
+      }
+      .title
+      {
+        font-size: 2em;
+        font-family: 'Caveat', cursive;
+        text-align: center;
+        text-shadow: 0.1em 0.1em #EBEBEB;
+      }
+
+      .content
+      {
+        font-family: 'Source Code Pro', monospace;
+        margin: 2%;
+        padding: 4%;
+        border: solid;
+        border-radius: 0.5em;
+        background-color: white;
+        box-shadow: 1em 1em #EBEBEB;
+      }
+    </style>
   </head>
   <body>
-    {% for post in posts %}
-        <div class="post">
-            <h2>{{ post.title }}</a></h2>
-            <p>{{ post.text|linebreaksbr }}</p>
-            <p>published: {{ post.published_date }}</p>
-        </div>
-    {% endfor %}
+    <h1 class="animated bounceIn slow big">Adam's Blog</h1>
+    <div>
+      {% for post in posts %}
+          <div class="animated fadeInUp delay-{{ forloop.counter }}s">
+              <h2 class="title animated pulse delay-{{ forloop.counter }}s">{{ post.title }}</a></h2>
+              <p class="content">{{ post.text|linebreaksbr }}
+                <br/><br/>
+                <b>{{ forloop.counter }} / {{posts|length }}</b>
+                <b style="padding-left: 1.5em">{{ post.published_date }}</b>
+              </p>
+          </div>
+          <br/>
+      {% endfor %}
+    </div>
+    <br/>
+    <p class="content animated bounceIn slow">
+      Based on Django Girls Tutorial
+      <br/><br/>
+      Animations provided by Animate.css
+      <br/><br/>
+      Fonts provided by Google Fonts
+      <br/><br/>
+      Background provided by Subtle Patterns
+      <br/><br/>
+      <b>Designed and deployed by Adam Hahn</b>
+    </p>
   </body>
 </html>
